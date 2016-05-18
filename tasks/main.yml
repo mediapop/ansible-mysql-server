@@ -1,0 +1,56 @@
+---
+- name: Add MySQL repository key
+  apt_key: url=http://repo.mysql.com/RPM-GPG-KEY-mysql state=present
+
+- name: Add MySQL Python Connector repository
+  apt_repository:
+    repo='deb http://repo.mysql.com/apt/ubuntu/ trusty connector-python-2.1'
+    state=present
+
+- name: Add MySQL Server repository
+  apt_repository:
+    repo='deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7'
+    state=present
+    update_cache=yes
+
+- name: Set root password
+  debconf:
+    name=mysql-community-server
+    question="mysql-community-server/{{item}}"
+    value="{{mysql_root_db_pass}}"
+    vtype=password
+  with_items:
+    - root-pass
+    - re-root-pass
+
+- name: Install MySQL
+  apt: name="{{ item }}" state=installed
+  with_items: "{{ mysql_pkgs }}"
+  register: install_mysql
+
+- name: Configure MySQL
+  template: src=ansible.cnf.j2 dest={{ mysql_conf_dir }}/conf.d/99-ansible.cnf
+  notify:
+   - restart mysql
+
+- name: add timezone support to mysql
+  shell: mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user={{mysql_root_db_user}} --password={{ mysql_root_db_pass }} mysql
+  notify:
+   - restart mysql
+  when: install_mysql is defined
+
+- name: ensure anonymous users are not in the database
+  mysql_user:
+    name=''
+    host="{{ item }}"
+    state=absent
+    login_user="{{mysql_root_db_user}}"
+    login_password="{{mysql_root_db_pass}}"
+    login_host="{{mysql_bind_address}}"
+  with_items:
+   - localhost
+   - "{{ ansible_hostname }}"
+
+- name: restart mysql
+  service: name="{{ mysql_service }}" state=restarted
+  when: install_mysql is defined

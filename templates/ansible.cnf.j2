@@ -1,0 +1,16 @@
+#
+# The MySQL database server configuration file.
+#
+[client]
+port = {{ mysql_port }}
+
+[mysqld]
+port = {{ mysql_port }}
+
+character_set_server = utf8mb4
+collation_server = utf8mb4_unicode_ci
+innodb_large_prefix = on
+innodb_file_format = BARRACUDA
+innodb_default_row_format = DYNAMIC
+
+bind-address = {{ mysql_bind_address }}
