@@ -22,9 +22,11 @@ Role Variables
 The variables that can be passed to this role and a brief description about
 them are as follows:
 
-      mysql_port: 3306
-      mysql_bind_address: "0.0.0.0"
-      mysql_root_db_pass: asdf1234
+```yml
+mysql_port: 3306
+mysql_bind_address: "0.0.0.0"
+mysql_root_db_pass: asdf1234
+```
 
 License
 -------
