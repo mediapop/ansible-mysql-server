@@ -26,7 +26,7 @@ them are as follows:
 mysql_port: 3306
 mysql_bind_address: "0.0.0.0"
 mysql_root_db_pass: asdf1234
-performance_schema = ON
+performance_schema: ON
 ```
 
 License
