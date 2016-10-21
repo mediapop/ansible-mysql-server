@@ -33,6 +33,10 @@
   notify:
    - restart mysql
 
+- name: Start MySQL
+  service: name="{{ mysql_service }}" state=started
+  when: install_mysql is defined
+
 - name: add timezone support to mysql
   shell: mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user={{mysql_root_db_user}} --password="{{ mysql_root_db_pass }}" mysql
   notify:
