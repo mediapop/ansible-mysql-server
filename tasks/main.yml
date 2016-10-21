@@ -1,6 +1,8 @@
 ---
 - name: Add MySQL repository key
-  apt_key: url=http://repo.mysql.com/RPM-GPG-KEY-mysql state=present
+  apt_key:
+    url: http://repo.mysql.com/RPM-GPG-KEY-mysql
+    id: 437D05B5
 
 - name: Add MySQL Python Connector repository
   apt_repository:
