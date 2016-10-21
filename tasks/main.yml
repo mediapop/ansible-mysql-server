@@ -6,12 +6,12 @@
 
 - name: Add MySQL Python Connector repository
   apt_repository:
-    repo='deb http://repo.mysql.com/apt/ubuntu/ trusty connector-python-2.1'
+    repo='deb http://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} connector-python-2.1'
     state=present
 
 - name: Add MySQL Server repository
   apt_repository:
-    repo='deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7'
+    repo='deb http://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} mysql-5.7'
     state=present
     update_cache=yes
 
