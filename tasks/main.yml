@@ -1,16 +1,16 @@
 ---
 - name: Add MySQL repository key
   apt_key:
-    url: http://repo.mysql.com/RPM-GPG-KEY-mysql
+    url: https://repo.mysql.com/RPM-GPG-KEY-mysql
     id: 5072E1F5
 
 - name: Add MySQL Python Connector repository
   apt_repository:
-    repo: 'deb http://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} connector-python-2.1'
+    repo: 'deb https://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} connector-python-2.1'
 
 - name: Add MySQL Server repository
   apt_repository:
-    repo='deb http://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} mysql-5.7'
+    repo='deb https://repo.mysql.com/apt/ubuntu/ {{ansible_distribution_release}} mysql-5.7'
     update_cache=yes
 
 - name: Set root password
