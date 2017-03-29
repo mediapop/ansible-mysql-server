@@ -1,6 +1,8 @@
 MySQL Server
 ============
 
+[![Travis](https://travis-ci.org/mediapop/ansible-mysql-server.svg?branch=master)](https://travis-ci.org/mediapop/ansible-mysql-server)
+
 MySQL 5.7 preconfigured for the web with emoji and timezone support. Specifically we set:
 
 ```ini
