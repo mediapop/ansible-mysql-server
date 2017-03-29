@@ -27,6 +27,7 @@ mysql_port: 3306
 mysql_bind_address: "0.0.0.0"
 mysql_root_db_pass: asdf1234
 performance_schema: ON
+mysql_sql_mode: "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
 ```
 
 License
