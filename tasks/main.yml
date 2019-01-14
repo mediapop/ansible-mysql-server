@@ -44,10 +44,9 @@
   when: install_mysql.changed
 
 - name: Install MySQLDB
-    apt: name={{item}}
-    with_items:
-      - python3-pip
-      - python3-mysqldb
+  apt:
+   - name: python3-pip
+   - name: python3-mysqldb
 
 - name: Ensure anonymous users are not in the database
   mysql_user:
