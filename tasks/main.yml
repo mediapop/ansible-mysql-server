@@ -43,7 +43,10 @@
    - restart mysql
   when: install_mysql.changed
 
-- name: ensure anonymous users are not in the database
+- name: Install the Python MySQLB module
+    pip: name=MySQL-python
+
+- name: Ensure anonymous users are not in the database
   mysql_user:
     name=''
     host="{{ item }}"
